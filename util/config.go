@@ -6,6 +6,8 @@ import (
 
 // Config stores the application configuration from environment variables
 type Config struct {
+	Host              string `mapstructure:"HOST"`
+	Port              string `mapstructure:"PORT"`
 	DBUrl             string `mapstructure:"DB_URL"`
 	DBDriver          string `mapstructure:"DB_DRIVER"`
 	MigrationURL      string `mapstructure:"MIGRATION_URL"`
@@ -25,5 +27,7 @@ func LoadConfig(path string) (config Config, err error) {
 	}
 
 	err = viper.Unmarshal(&config)
+
+	config.HTTPServerAddress = config.Host + ":" + config.Port
 	return
 }
