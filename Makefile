@@ -1,2 +1,2 @@
 server:
-	go run main.go
+	go run application.go
